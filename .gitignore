@@ -106,3 +106,4 @@ dist
 # DB
 *.sqlite
 *.sqlite3
+*.sqlite-journal
