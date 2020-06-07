@@ -1,5 +1,5 @@
 import React, { useEffect, useState, ChangeEvent, FormEvent } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { FiArrowLeft } from 'react-icons/fi';
 import { Map, TileLayer, Marker } from 'react-leaflet';
 import { LeafletMouseEvent } from 'leaflet';
@@ -24,6 +24,7 @@ interface IbgeCityResponse {
 }
 
 const CreatePoint = () => {
+  const history = useHistory();
   const [items, setItems] = useState<Item[]>([]);
   const [ufs, setUfs] = useState<string[]>([]);
   const [cities, setCities] = useState<string[]>([]);
@@ -133,10 +134,14 @@ const CreatePoint = () => {
       city,
       latitude,
       longitude,
+      image: 'image-fake',
       items,
     };
 
-    await api.post('/points', data);
+    await api.post('points', data);
+
+    alert('Ponto de coleta cadastrado com sucesso.');
+    history.push('/');
   };
 
   return (
